@@ -10,27 +10,9 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         HStack {
-            VStack {
-                Text("Mon")
-                Image(systemName: "sun.max.fill")
-                    .foregroundColor(Color.yellow)
-                Image(systemName: "trash.slash.fill")
-                    .foregroundColor(Color.gray)
-                Text("High: 70")
-                Text("Low: 50")
-            }
-            .padding()
+            ExtractedView(dey: "Mon",isRainy: false, high: 70, low: 50)
             
-            VStack {
-                Text("Tue")
-                Image(systemName: "cloud.rain.fill")
-                    .foregroundColor(Color.blue)
-                Image(systemName: "trash.slash.fill")
-                    .foregroundColor(Color.gray)
-                Text("High: 60")
-                Text("Low: 40")
-            }
-            .padding()
+            ExtractedView(dey: "Tue",isRainy: true, high: 60, low: 40)
         }
     }
 }
@@ -38,3 +20,39 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
+
+struct ExtractedView: View {
+    let dey: String
+    let isRainy: Bool
+    let high: Int
+    let low: Int
+    
+    var iconName: String {
+        if isRainy {
+            return "cloud.rain.fill"
+        } else{
+            return "sun.max.fill"
+        }
+    }
+    
+    var iconColor: Color {
+            if isRainy {
+                return Color.blue
+            } else {
+                return Color.yellow
+            }
+        }
+    
+    var body: some View {
+        VStack {
+            Text(dey)
+            Image(systemName: iconName)
+                .foregroundColor(iconColor)
+            Text("High: \(high)º")
+            Text("Low: \(low)º")
+        }
+        .padding()
+    }
+}
+
+
