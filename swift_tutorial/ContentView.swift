@@ -45,11 +45,16 @@ struct ExtractedView: View {
     
     var body: some View {
         VStack {
-            Text(dey)
+            Text(dey).font(Font.headline)
             Image(systemName: iconName)
                 .foregroundColor(iconColor)
+                .font(Font.largeTitle)
+                .padding(5)
             Text("High: \(high)º")
+                .fontWeight(Font.Weight.semibold)
             Text("Low: \(low)º")
+                .fontWeight(Font.Weight.medium)
+                .foregroundStyle(Color.secondary)
         }
         .padding()
     }
